@@ -2,11 +2,9 @@ import streamlit as st
 from homepage import homepage
 from my_books_page import my_books_page
 
-def bookwish_app():
+def bookwish_app(choice):
     #LAUNCHING THE APP
     #creating a menu bar
-    menu = ['Homepage', 'My Books', 'Wishlist', 'My Friends', 'About']
-    choice = st.sidebar.selectbox('Menu', menu)
 
     if choice == 'Homepage':
         st.subheader('Home')
@@ -21,4 +19,3 @@ def bookwish_app():
     elif choice == 'About':
         st.subheader('About')
         st.write('✨ Hi, Im Jana. I created this MVP for university.. Hope you enjoy! ✨')
-
