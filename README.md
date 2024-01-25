@@ -1,1 +1,1 @@
-# jana-weber-appdev-exam
+# Jana Weber App Development Exam project
