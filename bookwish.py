@@ -1,13 +1,18 @@
 import streamlit as st
 from homepage import homepage
+#importing the functions for the different pages
 from my_books_page import my_books_page
 from wishlist_page import wishlist_page
 from friends_page import friends_page
 
-def bookwish_app(choice):
-    #LAUNCHING THE APP
-    #creating a menu bar
 
+#LAUNCHING THE APP
+def bookwish_app(choice):
+    """
+    This function executes the main app.
+    It allows the user to switch between different pages.
+    """
+    #creating a menu bar with the different pages of the app
     if choice == 'Homepage':
         st.subheader('Home')
         homepage()

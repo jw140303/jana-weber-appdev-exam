@@ -17,7 +17,7 @@ cd jana-weber-appdev-exam
 ```
 3. Run the 'app.py' folder
 ```
-python app.py
+python -m streamlit run app.py
 ```
-4. Please log in with the username 'test'
+4. Please log in with the username 'test'. Other possible usernames are jana, dante, abbey, yona, and anna.
 5. Enjoy using my app! :)

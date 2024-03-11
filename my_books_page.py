@@ -2,10 +2,16 @@ import streamlit as st
 from helpers import connect_to_deta, fetch_data
 
 def my_books_page():
+    """
+    This function creates the My Books page.
+    On this page the user can view their saved books and add new books.
+    """
+    #connecting to the database that contains the books that are specific to the user
     db_user_books = connect_to_deta(f'user-{st.session_state.user_name}')
 
     placeholder = st.empty()
 
+    #creeating a form to add new books to the database
     with placeholder.form('form'):
         st.write('Add new books here! :)')
         st.write(
@@ -17,14 +23,15 @@ def my_books_page():
         close = st.form_submit_button('Close form ❌')
 
     if submitted:
-        db_user_books.put({'book': book, 'author': author, 'image': image})
+        db_user_books.put({'book': book, 'author': author, 'image': image}) #add the book to the database
 
     if close:
-        placeholder.empty()
+        placeholder.empty() #closing the form
 
     st.write('Your books:')
 
     user_owned_books = fetch_data(db_user_books)
+    #displaying the users books on the page
     st.dataframe(user_owned_books, use_container_width=True, column_order=("image", "book", "author"), hide_index=True,
                  column_config={"image": st.column_config.ImageColumn()}
                  )
