@@ -17,12 +17,11 @@ if 'count' not in st.session_state:
     st.session_state.count = 0
 
 db_login = connect_to_deta('bookwish')
-db_test_books = connect_to_deta('user-test')
 
 if st.session_state.count == 0:
     with placeholder.form('Login'):
         st.markdown('Enter your user information')
-        user_name = st.text_input('Username', placeholder='Please enter your user username').lower()
+        st.session_state.user_name = st.text_input('Username', placeholder='Please enter your user username').lower()
         password = st.text_input('Password', placeholder='Please enter your password', type='password')
         login_button = st.form_submit_button('Login')
 
@@ -32,7 +31,7 @@ if st.session_state.count == 0:
             user_names = list(user_data.user_name)  # list with the user names from the column user_name
 
             # if user name exists in user name - go to next site
-            if user_name in user_names:
+            if st.session_state.user_name in user_names: #used code from Towards Data Science and Streamlit library
                 credentials_check = True
             else:
                 st.error('Please provide correct user name')
