@@ -1,5 +1,5 @@
 import streamlit as st
-from helpers import connect_to_deta, fetch_data
+from src.helpers import connect_to_deta, fetch_data
 
 def wishlist_page():
     """
@@ -28,8 +28,6 @@ def wishlist_page():
 
     if close:
         placeholder.empty() #closing the form
-
-    st.write('Your wishlist:')
 
     user_wished_books = fetch_data(db_user_books_wishlist)
     #displayed the users wishlist in a table

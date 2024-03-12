@@ -1,6 +1,6 @@
 import streamlit as st
-from bookwish import bookwish_app
-from helpers import connect_to_deta, fetch_data #importing some predefined functions
+from src.bookwish import bookwish_app
+from src.helpers import connect_to_deta, fetch_data #importing some predefined functions
 
 #code to configure the page
 st.set_page_config(

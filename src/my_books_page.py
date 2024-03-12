@@ -1,5 +1,5 @@
 import streamlit as st
-from helpers import connect_to_deta, fetch_data
+from src.helpers import connect_to_deta, fetch_data
 
 def my_books_page():
     """
@@ -19,20 +19,19 @@ def my_books_page():
         book = st.text_input('Your new book')
         author = st.text_input('The author of the book')
         image = st.text_input('Add a link to the cover')
+        rating = st.text_input('What would you rate the book from 1 - 10?')
         submitted = st.form_submit_button('Save book 📖')
         close = st.form_submit_button('Close form ❌')
 
     if submitted:
-        db_user_books.put({'book': book, 'author': author, 'image': image}) #add the book to the database
+        db_user_books.put({'book': book, 'author': author, 'image': image, 'rating': rating}) #add the book to the database
 
     if close:
         placeholder.empty() #closing the form
 
-    st.write('Your books:')
-
     user_owned_books = fetch_data(db_user_books)
     #displaying the users books on the page
-    st.dataframe(user_owned_books, use_container_width=True, column_order=("image", "book", "author"), hide_index=True,
+    st.dataframe(user_owned_books, use_container_width=True, column_order=("image", "book", "author", "rating"), hide_index=True,
                  column_config={"image": st.column_config.ImageColumn()}
                  )
 

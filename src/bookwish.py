@@ -1,9 +1,9 @@
 import streamlit as st
-from homepage import homepage
 #importing the functions for the different pages
-from my_books_page import my_books_page
-from wishlist_page import wishlist_page
-from friends_page import friends_page
+from src.homepage import homepage
+from src.my_books_page import my_books_page
+from src.wishlist_page import wishlist_page
+from src.friends_page import friends_page
 
 
 #LAUNCHING THE APP

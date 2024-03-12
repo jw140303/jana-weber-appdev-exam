@@ -1,5 +1,5 @@
 import streamlit as st
-from helpers import connect_to_deta, fetch_data
+from src.helpers import connect_to_deta, fetch_data
 
 def friends_page():
     """
@@ -15,8 +15,6 @@ def friends_page():
 
     user_friends_data = fetch_data(db_user_friends)
     user_friends = list(user_friends_data.friends)
-
-    st.write('Your friends:')
 
     #giving the option to add a friend
     placeholder = st.empty()
@@ -46,12 +44,19 @@ def friends_page():
         st.write('To use this app to its full potential, you should consider adding some')
     else:
         #displaying the wishlist for every friend in the users friend list
-        for i in user_friends:
-            st.write(f'- {i}')
+        for friend in user_friends:
+            st.write(f'- {friend}')
             st.write('This is their wishlist:')
-            db_i_wishlist = connect_to_deta(f'user-{i}-wishlist')
-            i_wishlist = fetch_data(db_i_wishlist)
-            st.dataframe(i_wishlist, use_container_width=True, column_order=("image", "book", "author"),
+            db_friend_wishlist = connect_to_deta(f'user-{friend}-wishlist')
+            friend_wishlist = fetch_data(db_friend_wishlist)
+            st.dataframe(friend_wishlist, use_container_width=True, column_order=("image", "book", "author"),
+                         hide_index=True,
+                         column_config={"image": st.column_config.ImageColumn()}
+                         )
+            st.write('And here are their owned books:')
+            db_friend_books = connect_to_deta(f'user-{friend}')
+            friend_books = fetch_data(db_friend_books)
+            st.dataframe(friend_books, use_container_width=True, column_order=("image", "book", "author", "rating"),
                          hide_index=True,
                          column_config={"image": st.column_config.ImageColumn()}
                          )
