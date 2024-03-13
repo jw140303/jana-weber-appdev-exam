@@ -53,10 +53,3 @@ def friends_page():
                          hide_index=True,
                          column_config={"image": st.column_config.ImageColumn()}
                          )
-            st.write('And here are their owned books:')
-            db_friend_books = connect_to_deta(f'user-{friend}')
-            friend_books = fetch_data(db_friend_books)
-            st.dataframe(friend_books, use_container_width=True, column_order=("image", "book", "author", "rating"),
-                         hide_index=True,
-                         column_config={"image": st.column_config.ImageColumn()}
-                         )
